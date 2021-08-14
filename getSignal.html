@@ -1,0 +1,46 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/functions.js"></script>
+<script>
+    var env = '';
+    var signals = {
+        buy: 0,
+        sell: 0,
+    };
+    var requestedSymbol = '';
+    var requestedPeriod = '';
+
+    readTextFile("env.json", function (text) {
+        var data = JSON.parse(text);
+        env = data.env;
+    });
+
+    var url_string = window.location; //window.location.href
+    var url = new URL(url_string);
+
+    url.searchParams.get("symbol") != undefined ? requestedSymbol = url.searchParams.get("symbol") : null;
+    url.searchParams.get("period") != undefined ? requestedPeriod = url.searchParams.get("period") : null;
+
+    var signalTypes = ['pivot_points', 'ma_avg', 'indicators'];
+
+    setTimeout(() => {
+        signalTypes.forEach((element, i) => {
+            var url = env.API_V2 + env.API_TYPE + "/" + element + "?symbol=" + requestedSymbol + "&period=" + requestedPeriod + "&access_key=" + env.APP_KEY;
+            console.log(url);
+            ajax(url)
+                .then(function (result) {
+                    var signal = JSON.parse(result).response.oa_summary;
+                    if (signal == "Buy" || signal == "Strong Buy") {
+                        signals.buy = signals.buy + 1;
+                    } else if (signal == "Sell" || signal == "Strong Sell") {
+                        signals.sell = signals.sell + 1;
+                    }
+                })
+                .catch(function () {
+                    // An error occurred
+                });
+        });
+    }, 300);
+    console.log(signals); // Code depending on result
+
+
+</script>
