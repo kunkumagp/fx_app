@@ -1,0 +1,46 @@
+body{
+    background: #000;
+    color: #fff;
+}
+
+
+.v-center{
+    vertical-align: middle;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.green{
+    color: rgb(0, 240, 40);
+}
+
+.red{
+    color: rgb(240, 0, 0);
+}
+
+.gray{
+    color: rgb(78, 78, 78);
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.text3{
+    font-size: 18px;
+}
+
+.text5{
+    font-size: 24px;
+}
+
+
+table{width: 100%; text-align: center;}
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:rgb(255, 255, 255);border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:rgb(255, 255, 255);border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{vertical-align:top}
