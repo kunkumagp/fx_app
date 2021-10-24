@@ -24,7 +24,10 @@
 
     setTimeout(() => {
         signalTypes.forEach((element, i) => {
-            var url = env.API_V2 + env.API_TYPE + "/" + element + "?symbol=" + requestedSymbol + "&period=" + requestedPeriod + "&access_key=" + env.APP_KEY;
+            var period='';
+            element === 'pivot_points' ? period = '1h' : period = requestedPeriod;
+
+            var url = env.API_V2 + env.API_TYPE + "/" + element + "?symbol=" + requestedSymbol + "&period=" + period + "&access_key=" + env.APP_KEY;
             console.log(url);
             ajax(url)
                 .then(function (result) {
@@ -40,7 +43,10 @@
                 });
         });
     }, 300);
-    console.log(signals); // Code depending on result
+
+    setTimeout(() => {
+        return signals;
+    }, 5000);
 
 
 </script>
